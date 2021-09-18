@@ -4,6 +4,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
 gem 'bcrypt', '3.1.13'
+gem 'faker', '2.1.2'
+gem 'will_paginate', '3.1.8'
+gem 'will_paginate-bootstrap-style'
 gem 'bootstrap', '~> 5.1.0'
 gem 'jquery-rails'
 # Use sqlite3 as the database for Active Record
