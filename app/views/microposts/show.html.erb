@@ -1,0 +1,48 @@
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <%= render 'shared/user_info' %>
+    </section>
+    <section class="stats">
+      <%= render 'shared/stats' %>
+    </section>
+  </aside>
+  <div class="col-md-8 microposts-container">
+    <h3><%= @micropost.address %><h3>
+    <p class="review-content"><%= @micropost.content %><p>
+    <%= image_tag @micropost.display_image if @micropost.image.attached? %><br>
+    <h4>Where you'll camp</h4>
+    <div><%= @micropost.address %></div>
+    <div id="show-map"></div>
+  </div>
+</div>
+
+<script>
+  let map
+
+  function initMap(){
+    geocoder = new google.maps.Geocoder()
+    var test ={lat: <%= @micropost.latitude %>, lng: <%= @micropost.longitude %>};
+
+    map = new google.maps.Map(document.getElementById('show-map'), {
+      center: test,
+      zoom: 15,
+    });
+
+    var contentString = '住所：<%= @micropost.address %>';
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+
+    marker = new google.maps.Marker({
+      position:  test,
+      map: map,
+      title: contentString
+    });
+  }
+</script>
+
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['MAP_API_KEY'] %>&callback=initMap"  
+    async defer>
+</script>
