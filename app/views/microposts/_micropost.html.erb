@@ -4,7 +4,7 @@
   <span class="content">
     <%= micropost.address %><br>
     <%= micropost.content %>
-    <%= image_tag micropost.display_image if micropost.image.attached? %><br>
+    <%= image_tag micropost.display_image, class: "img-fluid" if micropost.image.attached? %><br>
     <%= link_to "show the details", micropost, data: {"turbolinks" => false} %>
   </span>
   <span class="timestamp">

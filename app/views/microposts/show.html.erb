@@ -10,10 +10,10 @@
   <div class="col-md-8 microposts-container">
     <h3><%= @micropost.address %><h3>
     <p class="review-content"><%= @micropost.content %><p>
-    <%= image_tag @micropost.display_image if @micropost.image.attached? %><br>
+    <%= image_tag @micropost.display_image, class: "img-fluid" if @micropost.image.attached? %><br>
     <h4>Where you'll camp</h4>
     <div><%= @micropost.address %></div>
-    <div id="show-map"></div>
+    <div id="show-map" class="w-100 p-3"></div>
   </div>
 </div>
 
