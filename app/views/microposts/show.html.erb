@@ -7,6 +7,20 @@
     <h4>Where I camped</h4>
     <div><%= @micropost.address %></div>
     <div id="show-map" class="w-100 p-3"></div>
+    <div>
+      <h4>Likes: <%= @micropost.likes.count %></h4>
+      <% if @micropost.likes.find_by(user_id: current_user.id) %>
+        <%= form_with(model: @like, url: like_path(id: @micropost.id), local: true, method: :delete) do |f| %>
+          <%= f.hidden_field :micropost_id, value: @micropost.id %>
+          <%= f.submit 'Undo' %>
+        <% end %>
+      <% else %>
+        <%= form_with(model: @like, url: likes_path, local: true) do |f| %>
+          <%= f.hidden_field :micropost_id, value: @micropost.id %>
+          <%= f.submit 'Like' %>
+        <% end %>
+      <% end %>
+    </div>
   </div>
 </div>
 
