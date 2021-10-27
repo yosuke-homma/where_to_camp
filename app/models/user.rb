@@ -4,6 +4,8 @@ class User < ApplicationRecord
   has_many :passive_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
+  has_many :likes, dependent: :destroy
+  has_many :liked_posts, through: :likes, source: :microposts 
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save :downcase_email
   before_create :create_activation_digest
@@ -92,6 +94,11 @@ class User < ApplicationRecord
   #現在のユーザーがフォローしてたらtrueを返す
   def following?(other_user)
     following.include?(other_user)
+  end
+
+  #既にいいねをしているかどうかの判定
+  def already_liked?(post)
+    self.likes.exists?(micropost_id: post.id)
   end
 
   private
