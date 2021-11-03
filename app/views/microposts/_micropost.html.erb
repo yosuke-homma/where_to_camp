@@ -2,7 +2,7 @@
   <%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
   <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
   <span class="content">
-    <%= micropost.address %><br>
+    <span class="address-bold"><%= micropost.address %></span><br>
     <%= micropost.content %>
     <%= image_tag micropost.display_image, class: "img-fluid" if micropost.image.attached? %><br>
     <%= link_to "show the details", micropost, data: {"turbolinks" => false} %>
