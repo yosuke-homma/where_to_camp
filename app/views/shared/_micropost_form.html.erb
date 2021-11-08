@@ -1,7 +1,11 @@
 <%= form_with(model: @micropost, local: true) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
+  <div id="rate">
+    <%= f.label :rate, 'Stars', class: 'col-md-3 col-form-label' %>
+    <%= f.hidden_field :rate, id: :rate %>
+  </div>
   <div class="field">
-    <%= f.text_area :content, placeholder: "Write a campground review..." %>
+    <%= f.text_area :content, placeholder: "Write a review..." %>
   </div>
   <div>
     <%= f.text_field :address, id: "address", value: "", placeholder: "Search Google Maps" %>
@@ -9,10 +13,10 @@
     <span id="display">Latitude and longtitude will be displayed here.</span>
     <span id='map'></span>
   </div>
-  <%= f.submit "Post", class: "btn btn-primary" %>
-  <div class="image"></div>
+  <div class="image">
     <%= f.file_field :image, accept: "image/jpeg,image/git,image/png" %>
-  </span>
+  </div>
+  <%= f.submit "Post", class: "btn btn-primary" %>
 <% end %>
 
 <script type="text/javascript">
@@ -72,3 +76,15 @@
     src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['MAP_API_KEY'] %>&callback=initMap"  
     async defer>
 </script>
+
+<!-- 評価javascript -->
+<script>
+$('#rate').raty({
+  size     : 36,
+  starOff:  '<%= asset_path('star-off.png') %>',
+  starOn : '<%= asset_path('star-on.png') %>',
+
+  scoreName: 'micropost[rate]',
+  half: false,
+});
+</script>  
