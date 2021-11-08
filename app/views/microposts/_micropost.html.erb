@@ -3,7 +3,8 @@
   <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
   <span class="content">
     <span class="address-bold"><%= micropost.address %></span><br>
-    <%= micropost.content %>
+    <div id="star-rate<%= micropost.id%>", class="d-flex flex-row bd-highlight mb-3"></div> 
+    <span>"<%= micropost.content %>"</span>
     <%= image_tag micropost.display_image, class: "img-fluid" if micropost.image.attached? %><br>
     <%= link_to "show the details", micropost, data: {"turbolinks" => false} %>
   </span>
@@ -14,3 +15,14 @@
     <% end %>
   </span>
 </li>
+
+<script>
+  $('#star-rate<%= micropost.id%>').raty({
+    size      : 36,
+    starOff   : '<%= asset_path('star-off.png') %>',
+    starOn    : '<%= asset_path('star-on.png') %>',
+    half      : false,
+    readOnly: true,
+    score: <%= micropost.rate %>,
+  });
+</script>
