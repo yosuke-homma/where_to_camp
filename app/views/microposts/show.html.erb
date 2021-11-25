@@ -1,14 +1,14 @@
 <div class="row">
   <div class="microposts-container">
     <h3><%= @micropost.address %><h3>
-    <%= image_tag @micropost.display_image, class: "img-fluid" if @micropost.image.attached? %><br>
-    <h4>Review Comment</h4>
+    <%= image_tag @micropost.display_image, class: "img-fluid mt-2" if @micropost.image.attached? %><br>
+    <h4 class="mt-4">Review Comment</h4>
     <p class="review-content"><%= @micropost.content %><p>
-    <h4>Where I camped</h4>
+    <h4 class="mt-4">Where I camped</h4>
     <div><%= @micropost.address %></div>
     <div id="show-map" class="w-100 p-3"></div>
     <div>
-      <h4>Likes: <%= @micropost.likes.count %></h4>
+      <h4 class="mt-4">Likes: <%= @micropost.likes.count %></h4>
       <% if @micropost.likes.find_by(user_id: current_user.id) %>
         <%= form_with(model: @like, url: like_path(id: @micropost.id), local: true, method: :delete) do |f| %>
           <%= f.hidden_field :micropost_id, value: @micropost.id %>
