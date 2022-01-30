@@ -7,10 +7,9 @@ This is a campground website. Users can post their reviews on campgrounds they v
 
 ## デプロイ / Deploy
 
-準備中です。
-Comming soon.
+https://where-to-camp.herokuapp.com/
 
-## 開発環境 / Vsersions
+## 開発環境 / Versions
 
 ・ruby 2.6.8 ・Rails 6.1.4.1 ・Bootstrap 5.1.0
 
